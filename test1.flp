@@ -1,0 +1,49 @@
+Library Test1 {
+
+	## Imports, Exports + Type declarations
+
+	record MyRecord {
+		String blah;
+		Int otherThing;
+	}
+
+	type List<T> = Empty | Cons T List<T>;
+
+} {
+
+	## Function declarations
+
+	numberOne : Int = 1;
+
+	add : Int int1 -> Int int2 -> Int
+		= int1 + int2;
+
+	add2 : Int int1 -> Int int2 -> Int
+		= applyFuncToInt add 1 2;
+
+	applyFuncToInt : (Int -> Int -> Int) function -> Int int1 -> Int int2 -> Int
+		= function int1 int2;
+
+	##  Generics - the "T" is the generic type here
+	id<T> : T value -> T = value;
+
+	basicList : List<String> = Cons "hi" Empty
+
+	and : Bool a -> Bool b -> Bool = 
+		if not a then 
+			false 
+		else 
+			if not b then 
+				false 
+			else 
+				true;
+
+	and1 : Bool a -> Bool b -> Bool = 
+		if not a: false 
+		else:
+			if not b: false
+			else: true;
+
+	implies (==>) infixl 1 : Bool val1 -> Bool val2 -> Bool
+		= val2 || not val1;
+}
